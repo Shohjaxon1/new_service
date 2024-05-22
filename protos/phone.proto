@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package phone;
+
+option go_package = "phone";
+
+message Phone {
+    string id = 1;
+    string phone_name = 2;
+    string color = 3;
+    string price = 4;
+    int32 ram = 5;
+    int32 memory = 6;
+    string created_up = 7;
+    string updated_at = 8;
+}
+
+
+message GetByIdRequest {
+    string id = 1;
+}
+
+message GetAllRequest {
+    string page = 1;
+    string limit = 2;
+}
+
+message GetByPhoneNameRequest {
+    string phone_name = 1;
+}
+message AllPhones {
+    repeated Phone phone = 1;
+}
+
+service PhoneService {
+    rpc Create(Phone) returns (Phone);
+    rpc GetById(GetByIdRequest) returns (Phone);
+    rpc GetByPhoneName(GetByPhoneNameRequest) returns (Phone);
+    rpc GetAll(GetAllRequest) returns (AllPhones);
+    rpc Update(Phone) returns (Phone);
+    rpc Delete(GetByIdRequest) returns (Phone);
+}
